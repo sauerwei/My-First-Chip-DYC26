@@ -4,6 +4,12 @@
 [submodule "librelane"]
 	path = librelane
 	url = https://github.com/librelane/librelane.git
+[submodule "chips/09_ants/design_data"]
+	path = chips/09_ants/design_data
+	url = https://gitlab.lrz.de/hm-rittensc/antchipdesign
+[submodule "chips/09-ants/design_data"]
+	path = chips/09-ants/design_data
+	url = https://gitlab.lrz.de/hm-rittensc/antchipdesign
 [submodule "chips/07-layr2/design_data"]
 	path = chips/07-layr2/design_data
 	url = https://gitlab.lrz.de/layr26/challenge.git
