@@ -1,0 +1,38 @@
+@startuml
+left to right direction
+state Decision <<choice>>
+state len_bits_0 <<choice>>
+
+state Fork <<fork>>
+state Join <<join>>
+
+[*] --> IDLE
+IDLE -right-> ADDR_READ : ADDR_BIT_1
+ADDR_READ -left-> LEN_READ : ADDR_BIT_0
+LEN_READ --> LEN_READ : 9x LEN_BIT_N
+LEN_READ -up-> PAD_IGNORE : LEN_BIT_9
+PAD_IGNORE --> PAD_IGNORE : 3x ignore bit
+PAD_IGNORE -up-> LOCK_CHECK : 4th ignored bit
+LOCK_CHECK : Check if msg is locked or hash is not ready
+LOCK_CHECK --> SEND_ERR : locked
+SEND_ERR --> SEND_ERR : 7x bit sent
+SEND_ERR --> IDLE : last bit sent
+LOCK_CHECK --> Decision
+Decision --> len_bits_0 : [MSG Type]
+len_bits_0 --> CACHE_PAYLOAD : [LEN_BITS != 0]
+len_bits_0 --> SEND_OK : [LEN_BITS == 0]
+SEND_OK : If LEN_BITS == 0: Set pulse for msg register
+SEND_OK --> SEND_OK : 7x bit sent
+SEND_OK --> Join : last bit sent
+CACHE_PAYLOAD --> CACHE_PAYLOAD : (LEN_BITS - 1)x cache bits
+CACHE_PAYLOAD --> Fork
+Fork --> SAVE_DATA
+Fork --> SEND_OK
+SAVE_DATA --> Join
+Join --> IDLE
+Decision --> SEND_HASH_OK : [HASH]
+SEND_HASH_OK --> SEND_HASH_OK : 7x bit sent
+SEND_HASH_OK --> SEND_HASH : last bit sent
+SEND_HASH --> SEND_HASH : 255x bit sent
+SEND_HASH --> IDLE : last bit sent
+@enduml

@@ -7,3 +7,16 @@
 [submodule "chips/07-layr2/design_data"]
 	path = chips/07-layr2/design_data
 	url = https://gitlab.lrz.de/layr26/challenge.git
+[submodule "chips/02-pacman/repos/pacman_sim"]
+	path = chips/02-pacman/repos/pacman_sim
+	url = https://gitlab.lrz.de/design-your-chip-2026/dyc_pacman
+[submodule "chips/02-pacman/repos/vga-playground"]
+	path = chips/02-pacman/repos/vga-playground
+	url = https://gitlab.lrz.de/design-your-chip-2026/vga-playground
+[submodule "chips/02-pacman/repos/vga-playground-vs-extension"]
+	path = chips/02-pacman/repos/vga-playground-vs-extension
+	url = https://gitlab.lrz.de/design-your-chip-2026/vga-playground-vs-extension
+[submodule "chips/01-layr-1/design_data"]
+	path = chips/01-layr-1/design_data
+	url = https://github.com/janschaible/layer.git
+	branch = handin

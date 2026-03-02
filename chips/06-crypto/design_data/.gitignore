@@ -1,0 +1,8 @@
+runs/
+.direnv/
+.envrc
+.venv/
+.vscode/
+__pycache__/
+.idea/
+sim_build/

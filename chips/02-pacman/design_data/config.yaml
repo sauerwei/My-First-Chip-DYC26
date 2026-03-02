@@ -1,0 +1,143 @@
+meta:
+  version: 3
+  flow: Chip
+  substituting_steps:
+  
+    # Magic reports some overlaps which can be ignored
+    Checker.IllegalOverlap: null
+    # Not working correctly
+    KLayout.SealRing: null
+    # Disable magic DRC 
+    Magic.DRC: null
+    Checker.MagicDRC: null
+    # Disable KLayout density check
+    KLayout.Density: null
+    Checker.KLayoutDensity: null
+
+
+    # you can uncomment this for the flow to be faster. Comment it again in the final run.
+    #KLayout.DRC: null
+    #Checker.KLayoutDRC: null
+
+    # you can uncomment this for the flow to be faster. Comment it again in the final run.
+    #KLayout.Antenna: null
+    #Checker.KLayoutAntenna: null
+    
+    # you can uncomment this for the flow to be faster. Comment it again in the final run.
+    #OpenROAD.IRDropReport: null
+    #KLayout.XOR: null
+    #Netgen.LVS: null
+    #Checker.LVS: null
+
+DESIGN_NAME: top
+VERILOG_FILES:
+- src/arrow_bitmap.sv
+- src/dot_bitmap.sv
+- src/dot_pill_ram.sv
+- src/fruit_bitmap.sv
+- src/fruit_manager.sv
+- src/game_ctrl.sv
+- src/game_over_bitmap.sv
+- src/game_reset_controller.sv
+- src/game_state_controller.sv
+- src/game_tick.sv
+- src/gamepad_final.sv
+- src/gate_bitmap.sv
+- src/ghost_ctrl.sv
+- src/ghost_manager.sv
+- src/ghost_sprite.sv
+- src/highscore_bitmap.sv
+- src/hvsync_generator.sv
+- src/level_bitmap.sv
+- src/map_renderer_wrapper.sv
+- src/maze_map.sv
+- src/pacman_ctrl.sv
+- src/pacman_sprite.sv
+- src/pill_bitmap.sv
+- src/power_pill_manager.sv
+- src/project_final.sv
+- src/ready_bitmap.sv
+- src/score_display.sv
+- src/seven_segment_decoder.sv
+- src/start_screen_bitmap.sv
+- src/top.sv
+- src/wall_bitmap.sv
+USE_SLANG: true
+
+#bitte hier prüfen MK
+CLOCK_PERIOD: 40
+#ende MK
+CLOCK_PORT: clk_PAD
+
+FP_SIZING: absolute
+DIE_AREA: [0, 0, 1800, 1800]
+CORE_AREA: [358.00, 358.00, 1442, 1442]
+
+PDN_CORE_RING: true
+PDN_CORE_RING_CONNECT_TO_PADS: true
+MAGIC_EXT_UNIQUE: "notopports"
+PDN_ENABLE_PINS: false
+PDN_CORE_RING_VWIDTH: 15
+PDN_CORE_RING_HWIDTH: 15
+PDN_VPITCH: 50
+PDN_HPITCH: 50
+PDN_VWIDTH: 3.5
+PDN_HWIDTH: 3.5
+
+#bitte ab hier prüfen MK
+
+DEFAULT_CORNER: nom_slow_1p08V_125C
+
+RUN_POST_CTS_RESIZER_TIMING: true
+PL_RESIZER_SETUP_SLACK_MARGIN: 0.15
+PL_RESIZER_ALLOW_SETUP_VIOS: false
+PL_RESIZER_SETUP_MAX_BUFFER_PCT: 80
+
+RUN_POST_GRT_RESIZER_TIMING: true
+GRT_RESIZER_SETUP_SLACK_MARGIN: 0.15
+GRT_RESIZER_ALLOW_SETUP_VIOS: false
+GRT_RESIZER_SETUP_MAX_BUFFER_PCT: 80
+
+GRT_ALLOW_CONGESTION: false
+
+#ende MK
+
+VDD_NETS: ["VDD"]
+GND_NETS: ["VSS"]
+
+VERILOG_POWER_DEFINE: USE_POWER_PINS
+
+IGNORE_DISCONNECTED_MODULES:
+- bondpad_70x70
+EXTRA_GDS: 
+- dir::bondpad/bondpad_70x70.gds
+EXTRA_LEFS:
+- dir::bondpad/bondpad_70x70.lef
+
+PAD_SOUTH: 
+  - "vdd_pads\\[0\\].vdd_pad"
+  - "vss_pads\\[0\\].vss_pad"
+  - "iovdd_pads\\[0\\].iovdd_pad"
+  - "iovss_pads\\[0\\].iovss_pad"
+
+PAD_EAST: 
+ - "uo_out_pads\\[0\\].uo_out_pad"
+ - "uo_out_pads\\[1\\].uo_out_pad"
+ - "uo_out_pads\\[2\\].uo_out_pad"
+ - "uo_out_pads\\[3\\].uo_out_pad"
+ - "uo_out_pads\\[4\\].uo_out_pad"
+ - "uo_out_pads\\[5\\].uo_out_pad"
+ 
+
+PAD_NORTH: 
+ - rst_n_pad
+ - clk_pad
+ - "uo_out_pads\\[6\\].uo_out_pad"
+ - "uo_out_pads\\[7\\].uo_out_pad"
+
+PAD_WEST: 
+ - button_up_pad
+ - button_down_pad
+ - button_left_pad
+ - button_right_pad
+

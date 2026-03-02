@@ -1,0 +1,52 @@
+#+title: Packetdiagram
+
+* Message
+** Request
+packetdiag {
+  colwidth = 16;
+  node_height = 72;
+
+  0-1: Register;
+  2-11: Message Length
+  12-15: Padding;
+  16-31: Message [colheight=5];
+}
+
+** Response
+packetdiag {
+  colwidth = 8;
+  node_height = 72;
+
+  0-7: Success;
+}
+
+* Hash
+** Request
+packetdiag {
+  colwidth = 16;
+  node_height = 72;
+
+  0-1: Register;
+  2-15: Padding;
+}
+
+** Response
+packetdiag {
+  colwidth = 8;
+  node_height = 72;
+
+  0-7: Success;
+  8-15: Hash [colheight=5];
+}
+
+** Combined
+packetdiag {
+  colwidth = 32;
+  node_height = 72;
+
+  0-1: Register;
+  2-15: Padding;
+
+  24-31: Success;
+  56-63: Hash [colheight=5];
+}

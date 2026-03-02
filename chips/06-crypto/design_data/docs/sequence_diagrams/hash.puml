@@ -1,0 +1,41 @@
+@startuml Signature
+actor user
+participant u_spi
+participant u_reg_msg
+participant u_hasher
+
+par
+    user -> u_spi : rst_n pulse
+    user -> u_hasher : rst_n pulse
+end
+
+loop has bit to send
+    user -> u_spi : send msg chunk
+    opt is msg_lock high
+        u_spi -> user : reject
+    end
+    u_spi -> u_reg_msg : save msg chunk with length
+    u_spi -> u_hasher : chunk_ready
+    activate u_hasher
+    u_hasher -> u_spi : set msg_lock high
+    opt is msg length !== 512
+        u_hasher -> u_hasher : add padding
+    end
+    u_hasher -> u_hasher : do hashing with chunk
+    u_hasher -> u_spi : set msg_lock low
+    opt is msg length !== 512
+        u_hasher -> u_spi : set hash_ready to high
+    end
+    deactivate u_hasher
+end
+
+
+user -> u_spi : read hash
+alt is hash_ready low
+    u_spi -> user : reject
+else is hash_ready high
+    u_spi -> u_hasher : read hash
+    u_spi -> user : send hash
+end
+
+@enduml

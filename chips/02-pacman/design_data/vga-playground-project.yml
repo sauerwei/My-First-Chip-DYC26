@@ -1,0 +1,38 @@
+project:
+  title: "Pacman" # The title of the project
+  author: "Hm students" # The author of the project
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # One file must be named project.v as the main file
+  source_files:
+    - "hvsync_generator.sv"
+    - "project.sv"
+    - "gamepad.sv"
+    - "maze_map.sv"
+    - "map_renderer_wrapper.sv"
+    - "dot_bitmap.sv"
+    - "pill_bitmap.sv"
+    - "gate_bitmap.sv"
+    - "wall_bitmap.sv"
+    - "pacman_sprite.sv"
+    - "pacman_ctrl.sv"
+    - "game_ctrl.sv"
+    - "dot_pill_ram.sv"
+    - "fruit_bitmap.sv"
+    - "fruit_manager.sv"
+    - "ghost_sprite.sv"
+    - "ghost_ctrl.sv"
+    - "ghost_manager.sv"
+    - "game_reset_controller.sv"
+    - "game_state_controller.sv"
+    - "score_display.sv"
+    - "seven_segment_decoder.sv"
+    - "power_pill_manager.sv"
+    - "arrow_bitmap.sv"
+    - "ready_bitmap.sv"
+    - "game_over_bitmap.sv"
+    - "start_screen_bitmap.sv"
+    - "highscore_bitmap.sv"
+    - "level_bitmap.sv"
+    - "game_tick.sv"

@@ -1,0 +1,27 @@
+# Librelane Configuration for VGA Playground
+
+DESIGN_NAME: tt_um_vga_example
+
+VERILOG_FILES:
+  - design_data/src/project.v
+  - design_data/src/age_manager.v
+  - design_data/src/encoder.v
+  - design_data/src/gol.v
+  - design_data/src/input_top.v
+  - design_data/src/matrix_mem.v
+  - design_data/src/neighbor_counter.v
+  - design_data/src/pixel_renderer.v
+  - design_data/src/rule_engine.v
+  - design_data/src/top_vga_handshake.v
+  - design_data/src/vga_timing.v
+
+
+CLOCK_PORT: clk
+CLOCK_PERIOD: 10.0  # 40 MHz
+
+FP_CORE_UTIL: 50
+FP_ASPECT_RATIO: 1.0
+PL_TARGET_DENSITY: 0.55
+
+# Preserve hierarchy
+SYNTH_HIERARCHY_MODE: keep
